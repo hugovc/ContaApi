@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Main Page</title> 
+</head>
+<body ng-app="demo">
+  <form novalidate class="simple-form">
+	<div class="container" ng-controller="ContaController">
+	    <div class="row">
+	   		 <h4>Cadastrar Conta</h4>
+	   	     <br></br>
+		     <label>Descricao</label> <input type="text" ng-model="contaDto.descricao" class="input-sm spacing"/>
+	          <br></br>
+	          <label>mes:</label> <input type="text" ng-model="contaDto.mes" class="input-sm spacing"/>
+	          <br></br>
+		   		<label>Tipo de Conta:</label>
+			   <select name="multipleSelect" id="multipleSelect" ng-model="contaDto.tipoConta">
+				     <option value="APAGAR">APAGAR </option>
+				     <option value="ARECEBER">ARECEBER </option>
+			   </select><br></br>
+			    
+			    <label>Status da Conta:</label>
+	   		   <select name="multipleSelect" id="multipleSelect" ng-model="contaDto.statusConta">
+			     <option value="PERMANENTE">PERMANENTE </option>
+			     <option value="PARCELADA">PARCELADA </option>
+		   	   </select><br></br>
+		   	   <label>valor:</label>
+	  		  <input type="text" name="valor" ng-model="contaDto.valor"/>	
+	  		  <br></br>
+	  		 </label> Parcelas:</label>
+	  		 <input type="number" name="valor" ng-model="contaDto.parcela"/>
+	  		  <br></br>  		 
+	  		 <h4>Cadastrar parcela desse Mês</h4>
+	  		<br></br>
+	  	    <label>Valor</label> <input type="text" ng-model="skills" ng-list class="input-sm custom-width spacing"
+                            placeholder=" -"/>
+			             		   
+	        <button ng-click="saveConta()" class="btn btn-sm btn-info">Salvar</button>
+	
+	        
+	    </div>
+	    </form>
+	    <div class="row">
+     <p>{{allContas | json}}</p> 
+    </div>
+    <hr/>
+    <div class="row" ng-repeat="conta in allContas">
+        <div class="">
+             <!-- <h3>{{conta.mes}}</h3>-->
+            <span ng-repeat="skill in conta.skillDtos" class="spacing">{{skill}}</span>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/lib/angular.min.js"></script>
+<script src="js/lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script src="js/app/app.js"></script>
+<script src="js/app/ContaController.js"></script>
+<script src="js/app/ContaService.js"></script>
+<link rel="stylesheet" href="css/lib/bootstrap.min.css"/>
+<link rel="stylesheet" href="css/app/app.css"/>
+</html>
